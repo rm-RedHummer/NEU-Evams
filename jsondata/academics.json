@@ -1,0 +1,19 @@
+{
+	"accountancy": "Accountancy,Accounting Technology",
+    "artsAndSciences": "Biology,Economics,Psychology,Public Administration",
+    "businessAdministration": "Real Estate Management,Marketing,Legal Management,Human Resource Development and Management,Entrepreneurship,Financial Management",
+    "communication": "Communication",
+    "computerStudies": "Entertainment and Multimedia Computing,Computer Science,Information Technology,Information Systems,Library Information Systems",
+    "criminology": "Criminology",
+    "education": "Secondary-Filipino,Secondary-Mathematics,Secondary-Biology,Secondary-Physical Sciences,Secondary-TLE,Secondary-MAPE,Secondary-English,Secondary-Social Studies,Elementary-General Sciences,Elementary-Special Education,Elementary-Content Courses,Elementary-PreSchool Education",
+    "engineeringAndArchitecture": "Astronomy,Industrial Engineering,Mechanical Engineering,Architecture,Electronics Engineering,Electrical Engineering,Civil Engineering",
+		"integratedSchool":"Integrated School",
+    "law": "Law",
+    "medicalTechnology": "Medical Technology",
+    "medicine": "Medicine",
+    "midwifery": "Midwifery",
+    "music": "Music Prepartory and Extended Studies,Music-Choral Conducting,Music-Piano,Music-Voice,Music Education",
+    "nursing": "Nursing",
+    "physicalTherapy": "Physical Therapy",
+	"respiratoryTherapy": "Respiratory Therapy"
+}
