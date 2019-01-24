@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="file" id="fileUpload"/>
+    <button id="submit-btn" onclick="Upload()">Submit</button>
+
+    <script type="text/javascript">
+    function Upload() {
+      var fileUpload = document.getElementById("fileUpload");
+      var reader = new FileReader();
+      reader.readAsText(fileUpload.files[0]);
+      reader.onload = function (e) {
+        var rows = e.target.result.split("\n");
+
+        var coa = [];
+        var coa_courses = ["ACCTG","ACTCH","ACC","ACTEC"];
+        var cas = [];
+        var cba = [];
+        var coc = [];
+        var ccs = [];
+        var ccr = [];
+        var ced = [];
+        var cea = [];
+        var col = [];
+        var cmt = [];
+        var med = [];
+        var cpt = [];
+        var crt = [];
+        var is = [];
+        console.log("Counting....");
+        for(var ctr = 0; ctr < rows.length-1; ctr++){
+
+          var temp = rows[ctr].split(",");
+          var code = temp[2].toLowerCase();
+          if(code.slice(0,3)=='emc'||code.slice(0,2)=='cs'||code.slice(0,3)=='lis'||code.slice(0,2)=='is'||code.slice(0,2)=='it'||code.slice(0,6)=='comsci'||code.slice(0,6)=='intech'||code.slice(0,5)=='insys'||code.slice(0,5)=='libis'){
+            ccs.push(code);
+          }
+          else if(code.slice(0,5)=='acctg'||code.slice(0,5)=='actch'||code.slice(0,3)=='acc'||code.slice(0,5)=='actec'){
+            coa.push(code);
+          }
+          else if(code.slice(0,3)=='bio'||code.slice(0,3)=='eco'||code.slice(0,2)=='fs'||code.slice(0,6)=='polsci'||code.slice(0,5)=='psych'||code.slice(0,3)=='pad'||code.slice(0,3)=='psy'){
+            cas.push(code);
+          }
+          else if(code.slice(0,3)=='rem'||code.slice(0,4)=='mktg'||code.slice(0,5)=='legma'||code.slice(0,4)=='hrdm'||code.slice(0,5)=='entre'||code.slice(0,2)=='fm'||code.slice(0,5)=='bamkg'||code.slice(0,5)=='balem'||code.slice(0,5)=='bahrdm'||code.slice(0,4)=='bafm'){
+            cba.push(code);
+          }
+          else if(code.slice(0,3)=='com'){
+            coc.push(code);
+          }
+          else if(code.slice(0,4)=='crim'){
+            ccr.push(code);
+          }
+          else if(code.slice(0,3)=='law'){
+            col.push(code);
+          }
+          else if(code.slice(0,2)=='mt'||code.slice(0,4)=='medt'){
+            cmt.push(code);
+          }
+          else if(code.slice(0,2)=='pt'||code.slice(0,5)=='phyth'){
+            cpt.push(code);
+          }
+          else if(code.slice(0,2)=='rt'||code.slice(0,5)=='resth'){
+            crt.push(code);
+          }
+          else if(code.slice(0,3)=='g11'||code.slice(0,3)=='g12'){
+            is.push(code);
+          }
+          else if(code.slice(0,5)=='edepe'||code.slice(0,5)=='edeed'||code.slice(0,4)=='edsm'||code.slice(0,4)=='edsf'||code.slice(0,5)=='edsps'||code.slice(0,4)=='edsb'||code.slice(0,5)=='edtle'||code.slice(0,4)=='edpe'||code.slice(0,4)=='edse'||code.slice(0,5)=='edsss'||code.slice(0,5)=='edegs'||code.slice(0,5)=='edese'||code.slice(0,5)=='edecc'||code.slice(0,5)=='bsfil'||code.slice(0,5)=='bsmat'||code.slice(0,5)=='bsbio'||code.slice(0,4)=='bsps'||code.slice(0,5)=='bstle'||code.slice(0,6)=='bsmape'||code.slice(0,5)=='bseng'||code.slice(0,4)=='bsss'||code.slice(0,4)=='begs'||code.slice(0,4)=='bese'||code.slice(0,4)=='bscc'||code.slice(0,5)=='bepse'){
+            ced.push(code);
+          }
+          else if(code.slice(0,5)=='astro'||code.slice(0,2)=='ie'||code.slice(0,3)=='eme'||code.slice(0,5)=='archi'||code.slice(0,3)=='ece'||code.slice(0,2)=='ee'||code.slice(0,2)=='ce'||code.slice(0,5)=='indus'||code.slice(0,4)=='mech'||code.slice(0,5)=='eltrx'||code.slice(0,5)=='eltcl'||code.slice(0,5)=='civil'){
+            cea.push(code);
+          }
+        }
+        console.log("coa:"+coa.length);
+        console.log("cas:"+cas.length);
+        console.log("cba:"+cba.length);
+        console.log("cea:"+cea.length);
+        console.log("coc:"+coc.length);
+        console.log("ccs:"+ccs.length);
+
+        console.log("ccr:"+ccr.length);
+        console.log("ced:"+ced.length);
+        console.log("cmt:"+cmt.length);
+
+        console.log("cpt:"+cpt.length);
+        console.log("crt:"+crt.length);
+        console.log("is:"+is.length);
+        console.log("col:"+col.length);
+
+
+        console.log("med:"+med.length);
+
+      }
+    }
+
+      // var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
+      // if (regex.test(fileUpload.value.toLowerCase())) {
+      //   if (typeof (FileReader) != "undefined") {
+      //     var reader = new FileReader();
+      //     reader.onload = function (e) {
+      //     var table = document.createElement("table");
+
+      //     var rows = e.target.result.split("\n");
+      //     for (var i = 0; i < rows.length; i++) {
+      //     var row = table.insertRow(-1);
+      //     var cells = rows[i].split(",");
+      //     for (var j = 0; j < cells.length; j++) {
+      //       var cell = row.insertCell(-1);
+      //       cell.innerHTML = cells[j];
+      //     }
+      // }
+      // var dvCSV = document.getElementById("dvCSV");
+      // dvCSV.innerHTML = "";
+      // dvCSV.appendChild(table);
+      // }
+      // reader.readAsText(fileUpload.files[0]);
+      // } else {
+      // alert("This browser does not support HTML5.");
+      // }
+      // } else {
+      // alert("Please upload a valid CSV file.");
+      // }
+
+    </script>
+  </body>
+</html>

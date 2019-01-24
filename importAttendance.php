@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<?php 
-    session_start(); 
+<?php
+    session_start();
     include("connection.php");
     if(!isset($_SESSION['username'])) {
-	   header("location: index.php");	
+	   header("location: index.php");
     }
 ?>
 <html lang="en">
@@ -12,17 +12,17 @@
     <link rel="icon" type="image/png"  sizes="76x76" href="images/New_Era_University.png">
     <title>NEU Fair 2019 Import Scanned Attendance</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        
+
     <!--Bootstrap CCS CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
+
     <!--For the college & courses json.-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
+
     <!--Font-->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 </head>
@@ -34,17 +34,17 @@
         color: #fff;
         font-family: "Roboto", sans-serif;
     }
-    
+
     .main-title {
-        padding-top: 10px;   
+        padding-top: 10px;
     }
     .main-content {
         padding-top: 80px;
     }
-    
-    .title-header { 
+
+    .title-header {
         padding-top: 40px;
-        
+
     }
     .upload {
         margin-left: auto;
@@ -76,7 +76,7 @@
             </div>
         </div><!--End of Menu Button-->
     </div><!--End of Header-->
-    
+
     <!--The Main Body-->
     <div class="row main-content">
         <div class="col-md-2"></div>
@@ -103,11 +103,12 @@
                                 <option value="10">DEBATE</option>
                                 <option value="11">HATAW SAYAW</option>
                                 <option value="12">NEU A CAPPELLA</option>
-                                <option value="13">CLASH OF THE BRUSH AND SCRAP TO CRAFT</option>
+                                <option value="13">CLASH OF THE BRUSH</option>
+                                <option value="14">SCRAP TO CRAFT</option>
                             </select>
                         </div>
                     </div><!--End of Event Dropdown-->
-                    
+
                     <div class="form-group row">
                         <div class="col-sm-3"><label class="col-form-label lead" for="chooseCSV">Upload a file</label></div>
                         <div class="col-sm-9">
@@ -116,12 +117,12 @@
                             </div>
                         </div>
                     </div><!--End of Upload File-->
-                    
+
                     <div class="row">
                         <input type="submit" class="btn btn-primary btn-lg  upload" value="Upload" name="upload"><!--Upload button-->
                     </div>
                 </form><!--End of form-->
-                <?php 
+                <?php
                     if(isset($_POST['upload'])) {
                         $fileName = $_FILES['csvFile']['name'];
                         $fileTempName = $_FILES['csvFile']['tmp_name'];
@@ -136,7 +137,7 @@
                         } else {
                             $handle = fopen($fileTempName, 'r');
                             $event_attended = htmlentities(mysqli_real_escape_string($connection, $_POST['event_attended']));
-                            
+
                             $event_title = "";
                             switch($event_attended) {
                                 case "01":
@@ -176,14 +177,17 @@
                                     $event_title = "NEU A CAPPELLA";
                                     break;
                                 case "13":
-                                    $event_title = "CLASH OF THE BRUSH AND SCRAP TO CRAFT";
+                                    $event_title = "CLASH OF THE BRUSH";
+                                    break;
+                                case "14":
+                                    $event_title = "SCRAP TO CRAFT";
                                     break;
                             }
-                            
+
                             while(($data = fgetcsv($handle, 1000, ',')) !== false) {
                                 $date_scanned = $data[0];
                                 $ticket_number = $data[2];
-                                
+
                                 $insertQuery = "INSERT INTO event_attendees(date_scanned, attended_ticket_number, event_code, event_title) VALUES('$date_scanned', '$ticket_number', '$event_attended', '$event_title')";
 
                                 $run = mysqli_query($connection, $insertQuery);
